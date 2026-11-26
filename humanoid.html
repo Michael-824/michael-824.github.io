@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Michael Portillo | Biomedical Engineering</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      color: #202a30;
+      background: #fafaf7;
+      font: 17px/1.6 Arial, sans-serif;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12 px 32 px;
+      padding: 20px 0;
+      border-bottom: 1px solid #ccd2cf;
+    }
+
+    a { color: #BF5700; }
+
+    header { padding: 72px 0 48px; }
+
+    h1, h2, h3 {
+      font-family: Georgia, serif;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(44px, 8vw, 76px);
+      margin: 8px 0 20px;
+    }
+
+    h2 { font-size: 32px; }
+    h3 { font-size: 24px; margin-top: 0; }
+    p { max-width: 62ch; }
+
+    article {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-top: 1px solid #ccd2cf;
+    }
+
+    article p { margin: 0 0 12px; }
+    section { margin-bottom: 56px; }
+
+/* Small teal labels above headings */
+.label {
+  color: #BF5700;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+/* Lighter name and subtitle, like the reference */
+header h1 {
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+header h1 + p {
+  color: #626c70;
+}
+
+/* Keep the section heading close to its label */
+#projects h2 {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+/* Project titles in the right-hand column */
+#projects article div h3 {
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0 0 10px;
+}
+
+.project-image {
+width: 100%;
+height: auto;
+display: block;
+border-radius: 8 px;
+
+}
+
+#contact {
+  padding: 24px 0 110px;
+  border-bottom: 1px solid #ccd2cf;
+}
+
+#contact h2 {
+  font-family: Georgia, serif;
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0 0 32px;
+}
+
+#contact a {
+  color: #BF5700;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+#contact a:hover,
+#contact a:focus-visible {
+  text-decoration: underline;
+}
+
+    @media (max-width: 640px) {
+      header { padding: 40px 0 24px; }
+      article { grid-template-columns: 1fr; gap: 8px; }
+    }
+#humanoid-projects .label {
+  margin: 0 0 8px;
+  color: #a64b00;
+  font: 600 13px/1.4 Arial, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#humanoid-projects header h1 {
+  font-weight: 400;
+}
+
+/* The project links sit below the page title. */
+nav.project-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px 24px;
+  margin-top: 32px;
+  padding: 0;
+  border: 0;
+}
+
+.project-jumps .label {
+  flex-basis: 100%;
+}
+
+/* Each project gets a full-width section and a divider. */
+.project-detail {
+  margin: 0;
+  padding: 36px 0 48px;
+  border-top: 1px solid #ccd2cf;
+  scroll-margin-top: 24px;
+}
+
+.project-detail h2 {
+  margin: 0 0 24px;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 400;
+}
+
+/* Only the image and text inside each project use columns. */
+.project-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: start;
+  gap: 32px;
+}
+
+.project-layout img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-layout h3 {
+  margin: 0 0 6px;
+  font: 600 18px/1.4 Arial, sans-serif;
+}
+
+.project-layout p {
+  margin: 0 0 22px;
+}
+
+@media (max-width: 640px) {
+  .project-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.demo-gallery {
+  margin-top: 40px;
+}
+
+.demo-gallery > h3 {
+  margin: 0 0 24px;
+  text-align: center;
+  font: 600 28px/1.2 Arial, sans-serif;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 20px;
+}
+
+.demo-card {
+  margin: 0;
+}
+
+.demo-card h4 {
+  margin: 0 0 12px;
+  font: 600 18px/1.4 Arial, sans-serif;
+}
+
+.demo-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #161616;
+}
+
+.demo-card figcaption {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-summary {
+  margin: 48px 0 0;
+}
+
+.project-summary > h3 {
+  margin: 0 0 18px;
+  text-align: center;
+  font: 600 28px/1.2 Arial, sans-serif;
+}
+
+.project-summary > p {
+  max-width: none;
+  margin: 0 0 24px;
+}
+
+.summary-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.summary-columns h4 {
+  margin: 0 0 10px;
+  font: 600 18px/1.3 Arial, sans-serif;
+}
+
+.summary-columns p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .summary-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.summary-columns p + p {
+  margin-top: 16px;
+}
+
+.schematic-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.schematic-stack figure {
+  margin: 0;
+}
+
+.schematic-stack figcaption {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 48px;
+  padding: 24px 0;
+  border-top: 1px solid #ccd2cf;
+  color: #626c70;
+  font-size: 14px;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.footer-dot {
+  margin: 0 5px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>Michael Portillo</strong>
+    <a href="index.html">About</a>
+    <a href="humanoid.html">Humanoid Robotics Projects</a>
+    <a href="competitive.html">Competitive Robotics Projects</a>
+    <a href="medical.html">Medical Device Projects</a>
+    <a href="Resume.pdf">CV</a>
+  </nav>
+
+  <main id="humanoid-projects">
+  <header>
+    <p class="label">Engineering Portfolio</p>
+    <h1>Humanoid Robotics Projects</h1>
+
+    <nav class="project-jumps" aria-label="Jump to project">
+      <span class="label">Jump to project</span>
+      <a href="#hand-actuator">Rack-and-Pinion Hand Actuator</a>
+      <a href="#rotary-sensor">Magnetic Rotary Sensor PCB</a>
+      <a href="#torque-coupler">Torque Actuator Coupler</a>
+    </nav>
+  </header>
+
+
+
+
+
+
+
+  <section class="project-detail" id="hand-actuator">
+    <p class="label">September-Current 2026</p>
+    <h2>Rack-and-Pinion Hand Actuator</h2>
+
+    <div class="project-layout">
+      <img src="Media/2026/HCRL_ New Hand Actuator/New_HandActuator_Isometric.jpeg"
+           alt="Isometric view of the rack-and-pinion hand actuator">
+
+      <div>
+        <h3>Design question</h3>
+        <p>Can a shorter hand actuator preserve the grip strength and
+          end-effector precision of the worm-gear design while meeting
+          the weight target?</p>
+
+        <h3>My contribution</h3>
+        <p>I adapted an existing rack-and-pinion mechanism to redesign
+          the hand actuator around three requirements: a compact footprint,
+          low weight, and a user-controlled pinching motion.</p>
+      </div>
+    </div>
+  </section>
+
+<div class="demo-gallery">
+  <h3>Hand Actuator Demos</h3>
+
+  <div class="demo-grid">
+    <figure class="demo-card">
+      <h4>Grasping a PLA Cone</h4>
+      <video controls playsinline preload="metadata"
+             src="Media/2026/HCRL_ New Hand Actuator/New_HandActuator_ConeGrab.mov"
+             aria-label="Hand actuator grabbing a cone">
+      </video>
+      <figcaption>
+        A close-up of the contact points as the actuator grips an smooth, plastic cone-shaped object.
+      </figcaption>
+    </figure>
+
+    <figure class="demo-card">
+      <h4>Grasping a Synthetic Leather Wallet</h4>
+      <video controls playsinline preload="metadata"
+             src="Media/2026/HCRL_ New Hand Actuator/New_HandActuator_WalletGrab.mov"
+             aria-label="Hand actuator grasp test">
+      </video>
+      <figcaption>
+        A close-up of the contact points as the actuator grips a synthetic leather wallet.
+      </figcaption>
+    </figure>
+
+    <figure class="demo-card">
+      <h4>Grasping a Polypropylene Copolymer (PP-C) Plant</h4>
+      <video controls playsinline preload="metadata"
+             src="Media/2026/HCRL_ New Hand Actuator/New_HandActuator_PlantGrab.mov"
+             aria-label="Hand actuator grasp test">
+      </video>
+      <figcaption>
+        A close-up of the contact points as the actuator grips the vase/base of a fake plastic plant.
+      </figcaption>
+    </figure>
+
+    <figure class="demo-card">
+      <h4>Grasping a ~0.2-0.25-lb Roll of Electrical Tape</h4>
+      <video controls playsinline preload="metadata"
+             src="Media/2026/HCRL_ New Hand Actuator/New_HandActuator_TapeGrab_Fail.mov"
+             aria-label="Hand actuator grasp test">
+      </video>
+      <figcaption>
+        A close-up of the contact points as the actuator grips a ~0.2lb roll of electrical tape.
+      </figcaption>
+    </figure>
+
+  </div>
+</div>
+
+<section class="project-summary">
+  <h3>Design Overview</h3>
+  <p>The goal was to shorten the hand actuator while maintaining a
+    lightweight, user-controlled pinching motion. I adapted a
+    rack-and-pinion mechanism to fit the available space and remove empty gaps from the previous worm gear-driven iteration of the actuator hand.</p>
+
+
+  <div class="summary-columns">
+    <div>
+      <h4>Starting Design</h4>
+      <p>The original hand actuator utilized a worm gear as the primary driver of the 	pinchers mechanisms. Its overall length and space inefficiencies motivated the 	redesign.</p>
+    </div>
+
+    <div>
+      <h4>Mechanism</h4>
+      <p>The pinion rotates and drives the top and bottom racks in a straight line. With each respective rack being attached to carefully-designed extrusions mimicking fingers, the extrusions move with the linear displacement of the rack as the pinion rotates.</p>
+    </div>
+
+    <div>
+      <h4>Design Constraints</h4>
+      <p>The mechanism needed to fit within a smaller footprint.
+        Grip strength, weight, positioning precision, and space were the
+        main criteria for comparing the designs.</p>
+    </div>
+  </div>
+</section>
+
+<section class="project-summary">
+  <h3>Key Findings</h3>
+  <p>After putting the prototype together, the following observations were made: The hand actuator could successfully hold lightweight (~0.07-0.11 lbs) with smooth, curved profiles, despite not having elastic parts to increase slip resistance; Handgrip dynamometry was conducted to further investigate successful gripping trials, where the actuator failed when the weight was increased to ~0.2-0.25 lbs. </p>
+
+  <div class="summary-columns">
+    <div>
+      <h4>Size and Weight</h4>
+      <p>The original worm gear-driven hand actuator weighed 0.85 lbs and measured 7.996 inches in length. My redesigned rack-and-pinion-driven hand actuator weighs 0.79 lbs and measures 6.22 inches. I reduced: Weight by 7.06%; Length by 22.21% (Assuming 100% infill for comparative purposes).</p>
+    </div>
+
+    <div>
+      <h4>Grip Performance</h4>
+      <p>The redesigned hand actuator was able to successfully grasp multiple smooth objects with ease: PLA cone, synthetic leather wallet, plastic plant, roll of electrical tape. The hand actuator only failed a handgrip dynamometry test with the tape roll. Official measured grip force performances with elastic parts on the pinchers are pending.</p>
+    </div>
+
+    <div>
+      <h4>Positioning Precision</h4>
+      <p>The actuator, manipulated by my own hand, was able to reached the intended position to grasp each of the objects relatively easily (<= 2 trials runs). Testing of the hand actuator when attached a humanoid robot interface is pending.</p>
+    </div>
+  </div>
+</section>
+
+<section class="project-summary">
+  <h3>Future Implications / Discussion</h3>
+  <p>The findings of these experiments imply the design being worthy of testing it further with elastic parts on the pinchers and sim-to-real interactions with these objects among others when attached to the humanoid robot interface in the HCRL labspace. The next question to be investigated is: How does this simplified hand actuator perform under a controlled environment against the worm gear-driven actuator in the exact same grasping tasks?</p>
+
+  <div class="summary-columns">
+    <div>
+      <h4>Design Tradeoffs</h4>
+      <p>The design choice that had the biggest effect on size/length was the primary driving mechanism. Positive: Simplified the displacement of the grippers from non-linear to linear; Allowed for better spacial efficiency; Less moving parts to reduce the weight by removing sixteen ball-bearings;  Weight allocation for protecting the inner-mechanisms of the hand to prevent jamming and dust collection.</p>
+
+<p>Negative: The redesign hand cannot hold its position under load once the user releases the handle; gripping force will likely be decreased; and one turn moves the rack by π*pitch diameter, meaning the system is less precise.</p>
+    </div>
+
+    <div>
+      <h4>Testing Limitations</h4>
+      <p>There were a few testing limitations: The hand actuator wasn't tested with the humanoid robot interface, meaning positioning accuracy couldn't be tested properly; The interface didn't have a motor, meaning grip strength was likely decreased; The pinchers didn't have elastic covers, meaning slipping resistance was severly decreased. These conditions matter as performance for a humanoid robot hand actuator must actually be tested on the intended interface, along with exercising the full capabilities of the hand actuator with grips and a motor.</p>
+    </div>
+
+    <div>
+      <h4>Next Iteration</h4>
+      <p>For the next iteration, I would like to attach the elastic grippers, attach the hand to the humanoid robot in the HCRL labspace, and attach the motor to the pinion gear to gain the most accurate test results and evaluations of the design possible.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section class="project-detail" id="rotary-sensor">
+  <p class="label">October-Current 2026</p>
+  <h2>Magnetic Rotary Sensor PCB &amp; Exoskeleton Integration</h2>
+
+  <div class="project-layout">
+<div class="schematic-stack">
+  <figure>
+    <img src="Media/2026/ReNeu Lab_ Magnetic Rotary Sensor Project/ReNeu_PCBSchematic_Analog.png"
+         alt="MT6701 schematic with direct analog output">
+    <figcaption>Direct analog output</figcaption>
+  </figure>
+
+  <figure>
+    <img src="Media/2026/ReNeu Lab_ Magnetic Rotary Sensor Project/ReNeu_PCBSchematic_PWM.png"
+         alt="MT6701 schematic with PWM output and an RC filter">
+    <figcaption>PWM output with RC filter</figcaption>
+  </figure>
+</div>
+
+    <div>
+      <h3>Design Question</h3>
+      <p>How accurately can a magnetic encoder track a hand exoskeleton’s
+        joint angle, and how much does the choice between direct analog
+        output and filtered PWM affect noise and response time?</p>
+
+      <h3>My Contribution</h3>
+      <p>I designed two MT6701 encoder schematics for the AMAX-4817 data
+        acquisition system. One sends the encoder’s analog voltage directly
+        to the DAQ. The other converts its pulse-width modulation (PWM)
+        output into a voltage using a resistor-capacitor filter. I selected
+        the filter components and calculated the expected response before
+        fabrication.</p>
+    </div>
+  </div>
+
+  <section class="project-summary">
+    <h3>Design Overview</h3>
+    <p>Both designs use the same magnetic encoder and DAQ input. Changing
+      how the angle signal reaches that input gives me a way to compare
+      the two approaches under the same joint motion.</p>
+
+    <div class="summary-columns">
+      <div>
+        <h4>Magnetic Joint Sensing</h4>
+        <p>The MT6701 measures rotation through 360°. The proposed mount
+          centers a rotating magnet over the chip, with a target air gap
+          of 0.5–2 mm. Keeping the magnet aligned as the joint moves is
+          part of the mechanical integration.</p>
+      </div>
+
+      <div>
+        <h4>Direct Analog Output</h4>
+        <p>The encoder’s 12-bit digital-to-analog converter produces a
+          voltage that represents angle. In my schematic, OUT connects
+          to AI0+ and board ground connects to AI0−. An external 5 V
+          supply powers the board.</p>
+      </div>
+
+      <div>
+        <h4>Filtered PWM Output</h4>
+        <p>In PWM mode, the pulse duty cycle represents angle. The intended
+          circuit places R1 between OUT and the measurement node, with C1
+          from that node to ground. AI0+ reads the voltage at the R1–C1
+          junction, and AI0− connects to board ground.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-summary">
+    <h3>Key Findings</h3>
+    <p>The circuit calculations predict how much the PWM filter will
+      smooth the encoder signal and how quickly its voltage can follow
+      a change in angle. These are design-stage estimates. Hardware
+      measurements are planned after fabrication.</p>
+
+    <div class="summary-columns">
+      <div>
+        <h4>Filter Cutoff</h4>
+        <p>I selected a 10 kΩ resistor and a 1.0 µF capacitor because
+          both are readily available and give a cutoff frequency of
+          15.9 Hz. That is about 62 times lower than the selected
+          994.4 Hz PWM carrier, which helps suppress switching ripple.</p>
+      </div>
+
+      <div>
+        <h4>Predicted Response Time</h4>
+        <p>The filter time constant is 10 ms. For an ideal step in average
+          input voltage, the output rises from 10% to 90% in about 22 ms.
+          It reaches 95% of its final change in about 30 ms and 98% in
+          about 39 ms.</p>
+      </div>
+
+      <div>
+        <h4>Angle Resolution</h4>
+        <p>Across a full 360° range, 12 bits corresponds to about 0.088°
+          per nominal step. Actual joint-angle accuracy will also depend
+          on magnet alignment, calibration, electrical noise, and the
+          DAQ measurement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-summary">
+    <h3>Future Implications / Discussion</h3>
+    <p>For exoskeleton feedback, a useful angle signal must stay steady
+      when the joint is still and follow the joint when it moves. Those
+      two conditions will guide the comparison between the boards.</p>
+
+    <div class="summary-columns">
+      <div>
+        <h4>Design Tradeoffs</h4>
+        <p>The direct analog design uses fewer components and avoids the
+          settling time of an external RC filter. It provides a baseline
+          for measuring how steady the encoder voltage is at a fixed angle.</p>
+        <p>On the PWM board, a lower cutoff reduces switching ripple but
+          also slows the response to movement. A higher cutoff follows
+          movement more quickly while allowing more ripple into the
+          measurement.</p>
+      </div>
+
+      <div>
+        <h4>Testing Limitations</h4>
+        <p>The PCBs have not yet been manufactured, so there is no
+          physical demonstration or measured comparison. The calculations
+          describe only the ideal filter. Joint-angle error, residual
+          ripple, and end-to-end delay through the DAQ remain unmeasured.</p>
+      </div>
+
+      <div>
+        <h4>Next Iteration</h4>
+        <p>I plan to reconcile the capacitor value in the schematic and
+          parts list, verify the filtered output connection, and have
+          both PCB variants manufactured and assembled.</p>
+        <p>I will test both boards on the same fixture. Holding the magnet
+          at known angles will let me measure angle error and noise.
+          Recording the same movement against a reference will let me
+          compare delay before mounting the sensor on the exoskeleton.</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="project-detail" id="torque-coupler">
+  <p class="label">July–August 2026</p>
+  <h2>Torque Actuator Coupler</h2>
+
+  <div class="project-layout">
+    <div class="schematic-stack">
+  <figure>
+    <img src="Media/2026/HCRL_ Torque Actuator Project/ActuatorPicture.jpeg"
+         alt="Actuator installed in its printed mount">
+    <figcaption>Printed actuator mount</figcaption>
+  </figure>
+
+  <figure>
+    <img src="Media/2026/HCRL_ Torque Actuator Project/Actuator_TorqueSensor_CAD.jpg"
+         alt="CAD rendering of the actuator and torque sensor mounts aligned on a shared baseplate">
+    <figcaption>CAD assembly of torque test rig</figcaption>
+  </figure>
+</div>
+
+    <div>
+      <h3>Design Question</h3>
+      <p>How can an AK140 KV170 actuator and a Bota Systems Rokubi torque
+        sensor be mounted on the same horizontal axis so the sensor can
+        measure torque transmitted through a coupler?</p>
+
+      <h3>My Contribution</h3>
+      <p>I designed and printed the actuator and sensor mounts, a prototype
+        jaw coupler with a TPU insert, and the adapters that connect the
+        hardware to the coupler. After my mentor selected an aluminum
+        coupler, I revised the adapters to fit it and designed a common
+        mounting plate for tabletop testing.</p>
+    </div>
+  </div>
+
+  <section class="project-summary">
+    <h3>Design Overview</h3>
+    <p>The fixture had two jobs: hold the actuator and sensor bodies in
+      position and transmit torque between their faces. I developed the
+      mounts and coupling parts separately, then checked their alignment
+      with the hardware assembled.</p>
+
+    <div class="summary-columns">
+      <div>
+        <h4>Mounting the Hardware</h4>
+        <p>My first concept used pinch clamps on a mechanical breadboard.
+          Because those clamps depended on friction, I redesigned the mounts
+          around the fastener holes on the actuator and sensor faces. On
+          the actuator side, the mount had to accommodate the 1 mm spacing
+          between the mounting holes and the rotating plate.</p>
+        <p>I used clearance holes so screws could pass through the printed
+          parts without tapping them. After inspecting the first prints,
+          I thickened the support walls and added fillets at weak joints.</p>
+      </div>
+
+      <div>
+        <h4>Developing the Coupler</h4>
+        <p>The first connector was rigid. To accommodate small mounting
+          errors, I designed two interlocking jaws with a TPU insert between
+          them. The CAD design allowed 0.1 mm between the coupler and
+          insert and 0.01 in between the jaws. I printed the prototype
+          on the lab’s Prusa XL.</p>
+        <p>When the lab selected an aluminum coupler, the printed parts
+          took on a different role: each adapter supplied a shaft that
+          the metal coupler could grip with set screws.</p>
+      </div>
+
+      <div>
+        <h4>Building a Tabletop Fixture</h4>
+        <p>The early mounts bolted directly to a breadboard. Later, the
+          test setup needed to attach to a table with a C-clamp. I designed
+          a shared mounting plate so the actuator and sensor mounts could
+          be positioned together and clamped as one assembly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-summary">
+    <h3>Key Findings</h3>
+    <p>The July 27 fit check showed that both mounts fit their respective
+      devices. The coupling parts needed further work at three interfaces:
+      the actuator bolt pattern, the sensor recess and locating pin, and
+      the spacing between the assembled mounts.</p>
+
+    <div class="summary-columns">
+      <div>
+        <h4>Actuator Bolt Pattern and Shaft Fit</h4>
+        <p>The mounting holes on the first actuator adapter were spaced too
+          far apart. I corrected the bolt pattern and removed an unnecessary
+          outer ring. A later fit check also showed that the printed shaft
+          was loose inside the aluminum coupler, so I increased its diameter
+          in the next revision.</p>
+      </div>
+
+      <div>
+        <h4>Sensor Recess and Locating Pin</h4>
+        <p>The sensor adapter’s center feature was too large for its recess,
+          while the hole for the metal dowel was too loose. I checked the
+          hardware documentation and revised the CAD tolerances to 0.15 mm
+          for the recess fit and 0.1 mm for the dowel fit.</p>
+        <p>A later assembly check exposed a separate issue: the pin
+          protruded far enough to prevent flush seating. I increased the
+          hole depth to accommodate it.</p>
+      </div>
+
+      <div>
+        <h4>Half-Inch Assembly Mismatch</h4>
+        <p>On July 29, the mounting holes were 0.5 in out of position when
+          the actuator, sensor, and coupler were assembled. I added a total
+          of 0.5 in of length across the two adapters. This was a spacing
+          issue that individual mount checks had missed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-summary">
+    <h3>Future Implications / Discussion</h3>
+    <p>Fit checks guided the mechanical revisions. The next question is
+      whether the fixture can transmit a known torque consistently,
+      including after the coupler has been removed and reinstalled.</p>
+
+    <div class="summary-columns">
+      <div>
+        <h4>Design Tradeoffs</h4>
+        <p>The printed jaw coupler let me adjust jaw spacing and use a
+          compliant TPU insert. Switching to the aluminum coupler made
+          the printed shaft diameter and set-screw engagement critical
+          dimensions.</p>
+        <p>To strengthen the printed adapters, I filleted the shaft-to-base
+          transitions, changed print orientation, added wall layers, and
+          used 40% infill. The effect of those changes on torsional strength
+          still needs to be measured.</p>
+      </div>
+
+      <div>
+        <h4>Testing Limitations</h4>
+        <p>By August 11, I had printed revised parts and was waiting on
+          additional hardware. The completed checks established which
+          features fit and which needed revision. Torque accuracy, coupler
+          slip under load, and repeatability remained open questions.</p>
+      </div>
+
+      <div>
+        <h4>Next Iteration</h4>
+        <p>I would first verify that the revised pin seats flush, the
+          aluminum coupler grips both shafts, and the mounts align on the
+          clamped plate. I would then compare the Rokubi reading against
+          a known applied torque and repeat the measurement after
+          reassembly to check how sensitive the result is to mounting.</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<footer class="site-footer">
+  <p>Michael Portillo <span class="footer-dot">·</span> FRC, VEX, and UT alumni</p>
+
+  <div class="footer-links">
+    <a href="mailto:michaeldportilloq@gmail.com">Email ↗</a>
+    <a href="https://github.com/Michael-824">GitHub ↗</a>
+  </div>
+</footer>
+
+</article>
+    </section>
+  </main>
+</body>
+</html>
+
+      </div>
+    </div>
+  </section>
+</main>

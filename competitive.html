@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Competitive Robotics Projects | Michael Portillo</title>
+
+  <style>
+    :root {
+      --burnt-orange: #bf5700;
+      --text: #202a30;
+      --muted: #586262;
+      --divider: #ccd2cf;
+      --background: #fafaf7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      color: var(--text);
+      background: var(--background);
+      font: 17px/1.6 Arial, sans-serif;
+    }
+
+    a,
+    a:visited {
+      color: var(--burnt-orange);
+      text-underline-offset: 2px;
+    }
+
+    a:hover,
+    a:focus-visible {
+      color: #914200;
+    }
+
+    p {
+      max-width: 72ch;
+      margin: 0 0 16px;
+    }
+
+    /* Main navigation: the name and links share one row when space allows. */
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 12px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--divider);
+      font-size: 17px;
+    }
+
+    .site-nav strong,
+    .site-nav a {
+      white-space: nowrap;
+    }
+
+    /* Page header and jump links */
+    .page-header {
+      padding: 72px 0 48px;
+    }
+
+    h1,
+    h2 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    h1 {
+      margin: 8px 0 20px;
+      font-size: clamp(44px, 8vw, 76px);
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      font-size: clamp(28px, 4vw, 40px);
+    }
+
+    h3,
+    h4 {
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .label {
+      margin: 0 0 8px;
+      color: var(--burnt-orange);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .project-jumps {
+      margin-top: 32px;
+    }
+
+    .jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+    }
+
+    /* Each featured project occupies its own full-width section. */
+    .project,
+    #additional {
+      padding: 36px 0 48px;
+      border-top: 1px solid var(--divider);
+      scroll-margin-top: 24px;
+    }
+
+    .project h3 {
+      margin: 20px 0 6px;
+      font-size: 18px;
+    }
+
+    /* Click any photo or CAD view to open the full-size image. */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 20px;
+      margin: 24px 0;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    figure a {
+      display: block;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: clamp(210px, 30vw, 320px);
+      object-fit: contain;
+      background: #f1f1ed;
+    }
+
+    figcaption,
+    .demo p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* Give the landscape assembly photo the full row. */
+    .gallery .wide {
+      grid-column: 1 / -1;
+    }
+
+    .gallery .wide img {
+      height: auto;
+      max-height: 460px;
+    }
+
+    /* Demo videos */
+    .demo {
+      max-width: 640px;
+      margin: 32px auto 0;
+    }
+
+    .demo h4 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      max-height: 430px;
+      background: #181b1c;
+    }
+
+    /* Additional Projects */
+    .category {
+      margin: 32px 0 20px;
+      font: 400 29px/1.2 Georgia, serif;
+    }
+
+    .additional-item {
+      margin: 0 0 40px;
+    }
+
+    .additional-item > h4 {
+      margin: 4px 0 10px;
+      font-size: 22px;
+    }
+
+    /* Footer */
+/* Footer */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 48px;
+  padding: 24px 0;
+  border-top: 1px solid #ccd2cf;
+  color: #626c70;
+  font-size: 14px;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.footer-dot {
+  margin: 0 5px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-footer a,
+.site-footer a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  text-decoration: underline;
+}
+
+    /* Phone layout */
+    @media (max-width: 640px) {
+      .page-header {
+        padding: 40px 0 32px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .site-nav {
+        justify-content: flex-start;
+        gap: 8px 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <strong>Michael Portillo</strong>
+    <a href="index.html">About</a>
+    <a href="humanoid.html">Humanoid Robotics Projects</a>
+    <a href="competitive.html" aria-current="page">Competitive Robotics Projects</a>
+    <a href="medical.html">Medical Device Projects</a>
+    <a href="Resume.pdf">CV</a>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <p class="label">Engineering Portfolio</p>
+      <h1>Competitive Robotics Projects</h1>
+
+      <p>My VEX U and FRC projects span lifting mechanisms, game-piece
+        handling, and training resources for incoming teammates.</p>
+
+      <nav class="project-jumps" aria-label="Jump to project">
+        <p class="label">Jump to project</p>
+
+        <div class="jump-links">
+          <a href="#lift">2026 Lift</a>
+          <a href="#intake">2025 Intake</a>
+          <a href="#elevator">2024 Elevator</a>
+          <a href="#forklift">2023 Forklift</a>
+          <a href="#additional">Additional Projects</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- VEX U 2026 LIFT MECHANISM -->
+    <section class="project" id="lift">
+      <p class="label">VEX U · 2026</p>
+      <h2>Lift Mechanism</h2>
+
+      <h3>Design Question</h3>
+      <p>How could the lift extend vertically while fitting its rails,
+        pulleys, and drive components within the chassis?</p>
+
+      <h3>Design Overview</h3>
+      <p>The initial CAD model served as a proof of concept for the lift
+        geometry and supported verification testing. The bench photo shows
+        how the cord runs between the rails and around the pulleys. The
+        two-robot photo shows the lifts extended above their chassis.</p>
+
+      <div class="gallery">
+        <figure>
+          <a href="Media/2026/VEXU 2026_ Lift Mechanism/VEXU2026_LiftMech_2xpicture.JPG">
+            <img src="Media/2026/VEXU 2026_ Lift Mechanism/VEXU2026_LiftMech_2xpicture.JPG"
+                 alt="Two competition robots with their lifts extended">
+          </a>
+          <figcaption>Both assembled lifts in the extended position.</figcaption>
+        </figure>
+
+        <figure>
+          <a href="Media/2026/VEXU 2026_ Lift Mechanism/VEXU2026_LiftMech_Picture.JPG">
+            <img src="Media/2026/VEXU 2026_ Lift Mechanism/VEXU2026_LiftMech_Picture.JPG"
+                 alt="Close-up of the lift rails, cord, pulleys, and gears"
+                 loading="lazy">
+          </a>
+          <figcaption>Bench view of the cord routing and drive components.</figcaption>
+        </figure>
+
+        <figure>
+          <a href="Media/2026/VEXU 2026_ Lift Mechanism/VEXU2026_LiftMech_CADInitial.PNG">
+            <img src="Media/2026/VEXU 2026_ Lift Mechanism/VEXU2026_LiftMech_CADInitial.PNG"
+                 alt="Initial lift CAD showing the uprights and pulley positions"
+                 loading="lazy">
+          </a>
+          <figcaption>Initial CAD model used for proof of concept and verification testing.</figcaption>
+        </figure>
+      </div>
+
+      <div class="demo">
+        <h4>Lift Demo</h4>
+        <video controls playsinline preload="metadata"
+               aria-label="VEX U 2026 lift mechanism demonstration"
+               src="Media/2026/VEXU 2026_ Lift Mechanism/VEXU2026_LiftMechDemo.mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- VEX U 2025 INTAKE -->
+    <section class="project" id="intake">
+      <p class="label">VEX U · 2025</p>
+      <h2>Intake Project</h2>
+
+      <h3>Design Question</h3>
+      <p>How could the intake rollers and tray guide a game piece into the
+        robot within the space available between the frame members?</p>
+
+      <h3>Design Overview</h3>
+      <p>The initial CAD assembly let us check the roller and tray positions
+        against the rest of the robot. The isometric view shows how the tray
+        fits around the central hardware. The side view shows the vertical
+        space available for the assembly.</p>
+
+      <div class="gallery">
+        <figure>
+          <a href="Media/2025/VEXU 2025_ Intake Project/VEXU2025_IntakePicture.jpeg">
+            <img src="Media/2025/VEXU 2025_ Intake Project/VEXU2025_IntakePicture.jpeg"
+                 alt="Assembled intake showing the rollers and tray"
+                 loading="lazy">
+          </a>
+          <figcaption>Intake rollers and tray installed on the robot.</figcaption>
+        </figure>
+
+        <figure>
+          <a href="Media/2025/VEXU 2025_ Intake Project/VEXU2025_IntakePicture2_Tray.jpeg">
+            <img src="Media/2025/VEXU 2025_ Intake Project/VEXU2025_IntakePicture2_Tray.jpeg"
+                 alt="Close-up of the intake tray and its central cutout"
+                 loading="lazy">
+          </a>
+          <figcaption>Tray mounting points and clearance around the central hardware.</figcaption>
+        </figure>
+
+        <figure>
+          <a href="Media/2025/VEXU 2025_ Intake Project/VEXU2025_Intake_CADIsoPicture.png">
+            <img src="Media/2025/VEXU 2025_ Intake Project/VEXU2025_Intake_CADIsoPicture.png"
+                 alt="Isometric CAD view of the intake rollers and tray"
+                 loading="lazy">
+          </a>
+          <figcaption>Isometric CAD view used to check the intake’s fit inside the robot.</figcaption>
+        </figure>
+
+        <figure>
+          <a href="Media/2025/VEXU 2025_ Intake Project/VEXU2025_IntakeCADSidePicture.png">
+            <img src="Media/2025/VEXU 2025_ Intake Project/VEXU2025_IntakeCADSidePicture.png"
+                 alt="Side view of the intake within the full robot CAD assembly"
+                 loading="lazy">
+          </a>
+          <figcaption>Side view showing the intake relative to neighboring components.</figcaption>
+        </figure>
+      </div>
+
+      <div class="demo">
+        <h4>Intake Demo</h4>
+        <video controls playsinline preload="metadata"
+               aria-label="VEX U 2025 intake demonstration"
+               src="Media/2025/VEXU 2025_ Intake Project/VEXU2025_IntakeDemo.mov">
+        </video>
+      </div>
+    </section>
+
+    <!-- VEX U 2024 ELEVATOR -->
+    <section class="project" id="elevator">
+      <p class="label">VEX U · 2024</p>
+      <h2>Elevator Project</h2>
+
+      <h3>Design Question</h3>
+      <p>How could the robot reach the field pipe and raise itself using a
+        chassis-mounted elevator?</p>
+
+      <h3>Design Overview</h3>
+      <p>The paired uprights extend above the chassis to reach the pipe.
+        The CAD view shows the attachment geometry at the top and where
+        the supports meet the frame. The physical photo captures the
+        elevator in its raised position.</p>
+
+      <div class="gallery">
+        <figure>
+          <a href="Media/2024/VEXU 2024_ Elevator Project/VEXU2024_Elevator_RealPicture.PNG">
+            <img src="Media/2024/VEXU 2024_ Elevator Project/VEXU2024_Elevator_RealPicture.PNG"
+                 alt="Competition robot with its elevator extended"
+                 loading="lazy">
+          </a>
+          <figcaption>Elevator extended on the assembled robot.</figcaption>
+        </figure>
+
+        <figure>
+          <a href="Media/2024/VEXU 2024_ Elevator Project/VEXU2024_ElevatorCAD.png">
+            <img src="Media/2024/VEXU 2024_ Elevator Project/VEXU2024_ElevatorCAD.png"
+                 alt="Elevator CAD showing the two uprights and their connection to the chassis"
+                 loading="lazy">
+          </a>
+          <figcaption>CAD assembly of the uprights, upper attachment, and chassis.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- FRC 2023 FORKLIFT -->
+    <section class="project" id="forklift">
+      <p class="label">FRC · 2023</p>
+      <h2>Forklift Project</h2>
+
+      <h3>Design Question</h3>
+      <p>How could the forklift prongs fit within the full robot assembly,
+        and what gearbox reduction would provide enough torque at the
+        cam to operate the mechanism?</p>
+
+      <h3>Design Overview</h3>
+      <p>The full-robot CAD shows the two forklift prongs in relation to
+        the chassis and lifting structure. The gearbox calculations connect
+        that geometry to the motor choice: a 152 lbf design load acting
+        35 in from the pivot produces a moment of about 443.3 ft·lbf.
+        The spreadsheet translates that load through the mechanism geometry
+        to a target cam torque of 57.37 ft·lbf.</p>
+
+      <h3>Gearbox Calculations</h3>
+      <p>The four stages use driving-to-driven tooth counts of 14:70,
+        20:70, 30:30, and 18:36. Together they give a 35:1 reduction.
+        Using the spreadsheet’s motor torque input of 2.06 ft·lbf, the
+        ideal gearbox output is 72.1 ft·lbf before drivetrain losses.
+        That puts the calculated output about 14.7 ft·lbf above the cam
+        torque target.</p>
+
+      <h3>My Contribution</h3>
+      <p>I helped assemble the physical forklift mechanism on the robot.
+        The images follow the project from the prong layout in CAD and
+        the gearbox sizing calculations to the hands-on assembly.</p>
+
+      <div class="gallery">
+        <figure>
+          <a href="Media/2023//FRC2023_ForkliftMech_FullRobot.png">
+            <img src="Media/2023/FRC 2023_ Forklift Project/FRC2023_ForkliftMech_FullRobot.png"
+                 alt="Full-robot CAD showing the two forklift prongs raised above the chassis"
+                 loading="lazy">
+          </a>
+          <figcaption>Forklift prongs in the full 2023 robot CAD assembly.</figcaption>
+        </figure>
+
+        <figure>
+          <a href="Media/2023/FRC 2023_ Forklift Project/FRC2023_Gearbox_Calculations.png">
+            <img src="Media/2023/FRC 2023_ Forklift Project/FRC2023_Gearbox_Calculations.png"
+                 alt="Gearbox spreadsheet comparing 72.1 ft·lbf of ideal output with a 57.37 ft·lbf target cam torque"
+                 loading="lazy">
+          </a>
+          <figcaption>Gearbox sizing for the target cam torque. Click the image to read the full spreadsheet.</figcaption>
+        </figure>
+
+        <figure class="wide">
+          <a href="Media/2023/FRC 2023_ Forklift Project/FRC2023_LiftMech_RealLife.jpg">
+            <img src="Media/2023/FRC 2023_ Forklift Project/FRC2023_LiftMech_RealLife.jpg"
+                 alt="Team members assembling the forklift mechanism on the robot chassis in the workshop"
+                 loading="lazy">
+          </a>
+          <figcaption>Working with a teammate to assemble the forklift mechanism on the chassis.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ADDITIONAL PROJECTS -->
+    <section id="additional">
+      <h2>Additional Projects</h2>
+
+      <h3 class="category">Engineering</h3>
+
+      <article class="additional-item" id="tail">
+        <p class="label">VEX U · 2024</p>
+        <h4>Tail Project</h4>
+
+        <p>The earlier competition version used a broad, perforated scoop.
+          We reduced its bulk in the next version and found that it scooped
+          more effectively during play. The photo shows the earlier design,
+          and the match footage shows the revision in action.</p>
+
+        <figure>
+          <a href="Media/2024/VEXU 2024_ Tail Project/VEXU2024_Tail_Picture.png">
+            <img src="Media/2024/VEXU 2024_ Tail Project/VEXU2024_Tail_Picture.png"
+                 alt="Earlier tail mechanism with a broad perforated scoop"
+                 loading="lazy">
+          </a>
+          <figcaption>Earlier version of the tail at competition.</figcaption>
+        </figure>
+
+        <div class="demo">
+          <h4>Tail Match Demo</h4>
+          <video controls playsinline preload="metadata"
+                 aria-label="Match footage of the revised tail mechanism"
+                 src="Media/2024/VEXU 2024_ Tail Project/VEXU_2024_TailDemo.mov">
+          </video>
+          <p>The slimmer tail scooping during a match.</p>
+        </div>
+      </article>
+
+      <article class="additional-item" id="goal-rush">
+        <p class="label">VEX U · 2025</p>
+        <h4>Goal Rush Mechanism</h4>
+
+        <p>The CAD model isolates the goal rush attachment so its arm and
+          mounting geometry are visible. The side view of the built robot
+          shows how the mechanism fits alongside the chassis.</p>
+
+        <div class="gallery">
+          <figure>
+            <a href="Media/2025/VEXU 2025_ Goal Rush Mechanism/VEXU2025_GoalRush_CAD.png">
+              <img src="Media/2025/VEXU 2025_ Goal Rush Mechanism/VEXU2025_GoalRush_CAD.png"
+                   alt="CAD model of the goal rush attachment"
+                   loading="lazy">
+            </a>
+            <figcaption>Goal rush mechanism in CAD.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2025/VEXU 2025_ Goal Rush Mechanism/VEXU2025_GoalRushPicture.jpeg">
+              <img src="Media/2025/VEXU 2025_ Goal Rush Mechanism/VEXU2025_GoalRushPicture.jpeg"
+                   alt="Side view of the goal rush mechanism mounted on the robot"
+                   loading="lazy">
+            </a>
+            <figcaption>Side view of the installed mechanism.</figcaption>
+          </figure>
+        </div>
+
+        <div class="demo">
+          <h4>Goal Rush Demo</h4>
+          <video controls playsinline preload="metadata"
+                 aria-label="VEX U 2025 goal rush mechanism demonstration"
+                 src="Media/2025/VEXU 2025_ Goal Rush Mechanism/VEXU2025_GoalRushVideo.mov">
+          </video>
+        </div>
+      </article>
+
+      <h3 class="category">Technical Documentation</h3>
+
+      <article class="additional-item" id="onshape">
+        <p class="label">VEX U · 2025</p>
+        <h4>Onshape Onboarding</h4>
+
+        <p>I wrote this guide for new mechanical team members. It walks
+          through how we plan a robot from the top down and build its CAD
+          assembly from individual parts. Members practice constrained
+          sketches, parametric modeling, and mates with VEX components,
+          then check their understanding against an answer key.</p>
+
+        <a href="Media/2025/VEXU 2025_ Onshape Onboarding/VEXU2025_OnshapeOnboarding.pdf">
+          Read the Onshape onboarding guide (PDF)
+        </a>
+      </article>
+
+      <article class="additional-item" id="game-manual">
+        <p class="label">VEX U · 2025</p>
+        <h4>Game Manual Onboarding Video</h4>
+
+        <p>I recorded a 30-minute walkthrough of the game manual for
+          incoming teammates and shared it on YouTube so other teams
+          could use it for their own season onboarding.</p>
+
+        <div class="demo">
+          <h4>VEX 2025-2026 Push Back Game Manual Overview</h4>
+          <video controls playsinline preload="metadata"
+                 aria-label="VEX U 2025 Game Manual Overview"
+                 src="Media/2025/VEXU 2025_ Game Manual Project/VEXU2025_GameManual_Overview.mp4">
+          </video>
+        </div>
+      </article>
+      </article>
+    </section>
+  </main>
+<footer class="site-footer">
+  <p>Michael Portillo <span class="footer-dot">·</span> FRC, VEX, and UT alumni</p>
+
+  <div class="footer-links">
+    <a href="mailto:michaeldportilloq@gmail.com">Email ↗</a>
+    <a href="https://github.com/Michael-824">GitHub ↗</a>
+  </div>
+</footer>
+</body>
+</html>

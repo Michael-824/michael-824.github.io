@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medical Device Projects | Michael Portillo</title>
+
+  <style>
+    :root {
+      --burnt-orange: #bf5700;
+      --text: #202a30;
+      --muted: #626c70;
+      --divider: #ccd2cf;
+      --background: #fafaf7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      color: var(--text);
+      background: var(--background);
+      font: 17px/1.6 Arial, sans-serif;
+    }
+
+    a,
+    a:visited {
+      color: var(--burnt-orange);
+      text-underline-offset: 2px;
+    }
+
+    a:hover,
+    a:focus-visible {
+      color: #914200;
+    }
+
+    /* Main navigation */
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px 12px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .site-nav strong,
+    .site-nav a {
+      white-space: nowrap;
+    }
+
+    /* Page title, year labels, and jump links */
+    .page-header {
+      padding: 72px 0 48px;
+    }
+
+    h1, h2 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    h1 {
+      margin: 8px 0 20px;
+      font-size: clamp(44px, 8vw, 76px);
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      font-size: clamp(28px, 4vw, 40px);
+    }
+
+    .label {
+      margin: 0 0 8px;
+      color: var(--burnt-orange);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .project-jumps {
+      margin-top: 32px;
+    }
+
+    .jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      margin-top: 12px;
+    }
+
+    /* Featured projects */
+    .project-detail {
+      padding: 36px 0 48px;
+      border-top: 1px solid var(--divider);
+      scroll-margin-top: 24px;
+    }
+
+    .project-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      align-items: start;
+      gap: 32px;
+    }
+
+    .project-layout h3 {
+      margin: 0 0 6px;
+      font: 600 18px/1.4 Arial, sans-serif;
+    }
+
+    .project-layout p {
+      margin: 0 0 22px;
+    }
+
+    /* The first image sits beside the design question and contribution. */
+    figure {
+      margin: 0;
+    }
+
+    figure a {
+      display: block;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    /* Supporting photos, drawings, and CAD views */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 20px;
+      margin-top: 24px;
+    }
+
+    .gallery img {
+      height: clamp(200px, 28vw, 300px);
+      object-fit: contain;
+    }
+
+    /* Centered subsection headings and three-column summaries */
+    .project-summary {
+      margin: 40px 0 0;
+    }
+
+    .project-summary > h3 {
+      margin: 0 0 18px;
+      text-align: center;
+      font: 600 28px/1.2 Arial, sans-serif;
+    }
+
+    .project-summary > p {
+      margin: 0 0 20px;
+    }
+
+    .summary-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .summary-columns h4 {
+      margin: 0 0 8px;
+      font: 600 18px/1.4 Arial, sans-serif;
+    }
+
+    .summary-columns p {
+      margin: 0;
+    }
+
+    .summary-columns p + p {
+      margin-top: 16px;
+    }
+
+    /* Footer */
+    .site-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 24px;
+      margin-top: 48px;
+      padding: 24px 0;
+      border-top: 1px solid var(--divider);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    .footer-dot {
+      margin: 0 5px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .site-footer a,
+    .site-footer a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-footer a:hover,
+    .site-footer a:focus-visible {
+      text-decoration: underline;
+    }
+
+    /* Phone layout */
+    @media (max-width: 700px) {
+      .summary-columns {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-header {
+        padding: 40px 0 32px;
+      }
+
+      .project-layout,
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .site-nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="site-nav" aria-label="Main navigation">
+    <strong>Michael Portillo</strong>
+    <a href="index.html">About</a>
+    <a href="humanoid.html">Humanoid Robotics Projects</a>
+    <a href="competitive.html">Competitive Robotics Projects</a>
+    <a href="medical.html" aria-current="page">Medical Device Projects</a>
+    <a href="Resume.pdf">CV</a>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <p class="label">Engineering Portfolio</p>
+      <h1>Medical Device Projects</h1>
+
+      <nav class="project-jumps" aria-label="Jump to project">
+        <p class="label">Jump to project</p>
+        <div class="jump-links">
+          <a href="#tremor-device">Tremor Detection Device</a>
+          <a href="#assembly-fixture">ClearCam Assembly Fixture</a>
+          <a href="#clearcam-pcb">ClearCam PCB</a>
+          <a href="#laparoscopic-rack">Laparoscopic Rack</a>
+          <a href="#ecg-pcb">ECG PCB</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- 2026 · BME 261L TREMOR DETECTION DEVICE -->
+    <section class="project-detail" id="tremor-device">
+      <p class="label">2026 · BME 261L</p>
+      <h2>Tremor Detection Device</h2>
+
+      <div class="project-layout">
+        <figure>
+          <a href="Media/2026/BME261L_ Tremor Detection Device/BME261L_TremorDevice_Electronics.jpg">
+            <img src="Media/2026/BME261L_ Tremor Detection Device/BME261L_TremorDevice_Electronics.jpg"
+                 alt="Open enclosure showing the electronics layout, wiring, and slots for the watch strap">
+          </a>
+          <figcaption>Electronics layout and strap slots inside the printed enclosure.</figcaption>
+        </figure>
+
+        <div>
+          <h3>Design Question</h3>
+          <p>How could a wrist-worn tremor detector hold its electronics
+            in place and move with the wrist without the enclosure slipping
+            along the strap?</p>
+
+          <h3>My Contribution</h3>
+          <p>I designed the enclosure, arranged the electronics inside it,
+            and sized the slots for an Apple Watch strap. The strap-to-case
+            fit mattered because the device was intended to capture wrist
+            motion. Any play at that interface could let the enclosure
+            move independently of the wrist.</p>
+        </div>
+      </div>
+
+      <section class="project-summary">
+        <h3>Design Overview</h3>
+        <div class="summary-columns">
+          <div>
+            <h4>Electronics Placement</h4>
+            <p>I laid out the board and wiring within the case footprint,
+              accounting for the space the wires occupy when the enclosure
+              is closed.</p>
+          </div>
+          <div>
+            <h4>Strap Interface</h4>
+            <p>I designed the slots around the watch strap so it would
+              sit snugly where it passes through the case. This was the
+              interface I targeted to reduce slippage.</p>
+          </div>
+          <div>
+            <h4>Printed Enclosure</h4>
+            <p>The printed case brought the electronics layout and strap
+              interface into one wearable assembly. The side view shows
+              how the strap passes beneath the housing.</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <figure>
+            <a href="Media/2026/BME261L_ Tremor Detection Device/BME261L_TremorDevice_IsoPicture.jpeg">
+              <img src="Media/2026/BME261L_ Tremor Detection Device/BME261L_TremorDevice_IsoPicture.jpeg"
+                   alt="Isometric view of the closed, 3D-printed tremor detector case"
+                   loading="lazy">
+            </a>
+            <figcaption>Isometric view of the printed enclosure with the lid installed.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2026/BME261L_ Tremor Detection Device/BME261L_TremorDevice_SidePicture.jpeg">
+              <img src="Media/2026/BME261L_ Tremor Detection Device/BME261L_TremorDevice_SidePicture.jpeg"
+                   alt="Side profile of the printed enclosure with the wrist strap looped underneath"
+                   loading="lazy">
+            </a>
+            <figcaption>Side profile showing the case thickness and strap position.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </section>
+
+    <!-- 2025 · CLEARCAM ASSEMBLY FIXTURE -->
+    <section class="project-detail" id="assembly-fixture">
+      <p class="label">2025 · ClearCam Internship</p>
+      <h2>Assembly Fixture for a Laparoscopic Device</h2>
+
+      <div class="project-layout">
+        <figure>
+          <a href="Media/2025/ClearCam_ Assembly Fixture Project/ClearCam_AssemblyFixtureCAD_FrictionFit.png">
+            <img src="Media/2025/ClearCam_ Assembly Fixture Project/ClearCam_AssemblyFixtureCAD_FrictionFit.png"
+                 alt="Detail of the mating feature at the end of one assembly fixture half"
+                 loading="lazy">
+          </a>
+          <figcaption>Friction-fit feature that joins the two printable halves.</figcaption>
+        </figure>
+
+        <div>
+          <h3>Design Question</h3>
+          <p>How could an assembler position the wipe at the correct angle
+            when installing the handle components, given that the required
+            fixture was longer than the printer’s build volume?</p>
+
+          <h3>My Contribution</h3>
+          <p>I modeled the fixture cavity around the existing device and
+            split the body into two printable halves with a compression-fit
+            joint. I added an alignment feature at the end so the assembler
+            could use the fixture itself to orient the wipe during insertion.</p>
+        </div>
+      </div>
+
+      <section class="project-summary">
+        <h3>Design Overview</h3>
+        <div class="summary-columns">
+          <div>
+            <h4>Cavity Fit</h4>
+            <p>I built a 0.008 in allowance into the CAD cavity around
+              the existing device. That dimension set the intended fit
+              for the print trial.</p>
+          </div>
+          <div>
+            <h4>Wire Position</h4>
+            <p>The wire path measured X inches including its curve. The
+              fixture needed to hold that path during assembly while
+              preserving the wire’s ability to rotate for the wiping motion. (Signed NDA restricts me from revealing wire path length.)</p>
+          </div>
+          <div>
+            <h4>Assembly Orientation</h4>
+            <p>Splitting the fixture solved the printer-size constraint.
+              The mating joint aligns the fixture halves, while a separate
+              feature at the tip establishes the wipe’s orientation.</p>
+          </div>
+        </div>
+
+        <figure>
+          <a href="Media/2025/ClearCam_ Assembly Fixture Project/ClearCam_AssemblyFixtureCAD_Full.png">
+            <img src="Media/2025/ClearCam_ Assembly Fixture Project/ClearCam_AssemblyFixtureCAD_Full.png"
+                 alt="Full CAD assembly showing the two fixture halves and the wipe alignment feature at the far end"
+                 loading="lazy">
+          </a>
+          <figcaption>Assembled fixture. The channel follows the device, and the end feature locates the wipe.</figcaption>
+        </figure>
+      </section>
+    </section>
+
+    <!-- 2025 · CLEARCAM PCB -->
+    <section class="project-detail" id="clearcam-pcb">
+      <p class="label">2025 · ClearCam Internship</p>
+      <h2>Motor-Control PCB for a Laparoscopic Device</h2>
+
+      <div class="project-layout">
+        <figure>
+          <a href="Media/2025/ClearCam_ PCB Project/ClearCam_PCB_InitialDrawing.png">
+            <img src="Media/2025/ClearCam_ PCB Project/ClearCam_PCB_InitialDrawing.png"
+                 alt="Whiteboard drawing of the battery, motor, mode switch, and actuation buttons"
+                 loading="lazy">
+          </a>
+          <figcaption>Initial whiteboard drawing of the device’s electrical connections.</figcaption>
+        </figure>
+
+        <div>
+          <h3>Design Question</h3>
+          <p>How could the battery, N20 gearmotor connection, and controls
+            fit inside the handle while keeping the motor cam aligned
+            with its internal push button?</p>
+
+          <h3>My Contribution</h3>
+          <p>I translated the whiteboard circuit into a KiCad schematic
+            and board layout. I measured the physical components, adapted
+            footprints for the battery holder and switches, and revised
+            their placement around the handle and motor geometry.</p>
+        </div>
+      </div>
+
+      <section class="project-summary">
+        <h3>Design Overview</h3>
+        <div class="summary-columns">
+          <div>
+            <h4>Controls and Power</h4>
+            <p>The design combined a 6 V battery, an external actuation
+              button, an internal tactile button, a slide switch, and
+              a connection to the N20 motor. The external button had to
+              remain accessible on the handle.</p>
+          </div>
+          <div>
+            <h4>Custom Footprints</h4>
+            <p>I adjusted pad spacing and through-hole positions to match
+              the selected parts. When a suitable battery holder was
+              identified, I updated its footprint around the measured
+              1.12 in spacing between lead centers.</p>
+          </div>
+          <div>
+            <h4>Cam Alignment</h4>
+            <p>The motor sat offset from its connector. I revised the
+              distance from the connector midpoint to the internal button
+              midpoint to approximately 1.358 in so the layout accounted
+              for the cam’s position.</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <figure>
+            <a href="Media/2025/ClearCam_ PCB Project/ClearCam_PCB_Layout.png">
+              <img src="Media/2025/ClearCam_ PCB Project/ClearCam_PCB_Layout.png"
+                   alt="KiCad placement view with battery, switch, push-button, and connector footprints"
+                   loading="lazy">
+            </a>
+            <figcaption>KiCad footprint placement within the proposed board outline.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2025/ClearCam_ PCB Project/ClearCam_PCB_Schematic.png">
+              <img src="Media/2025/ClearCam_ PCB Project/ClearCam_PCB_Schematic.png"
+                   alt="KiCad schematic showing the battery, switches, push buttons, and connector"
+                   loading="lazy">
+            </a>
+            <figcaption>Electrical schematic used to define the connections between components.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </section>
+
+    <!-- 2025 · CLEARCAM LAPAROSCOPIC RACK -->
+    <section class="project-detail" id="laparoscopic-rack">
+      <p class="label">2025 · ClearCam Internship</p>
+      <h2>Laparoscopic Storage and Transport Rack</h2>
+
+      <div class="project-layout">
+        <figure>
+          <a href="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_Assembly.png">
+            <img src="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_Assembly.png"
+                 alt="Final CAD assembly showing parallel rows of holders for the two ends of the laparoscopes"
+                 loading="lazy">
+          </a>
+          <figcaption>Final rack design with separate supports for the camera and eyepiece ends.</figcaption>
+        </figure>
+
+        <div>
+          <h3>Design Question</h3>
+          <p>How could one rack secure both 5 mm and 10 mm laparoscopes
+            inside a fixed-size transport box while allowing a clinician
+            to snap each instrument into place and remove it by hand?</p>
+
+          <h3>My Contribution</h3>
+          <p>I designed separate supports for the distal camera end and
+            the proximal eyepiece. I iterated on the retaining profiles to
+            balance flexure during insertion with resistance to pullout.
+            I also incorporated holes for metal rods to keep the rack
+            rigid when handled inside or outside the box.</p>
+        </div>
+      </div>
+
+      <section class="project-summary">
+        <h3>Design Overview</h3>
+        <div class="summary-columns">
+          <div>
+            <h4>Two Instrument Sizes</h4>
+            <p>The box dimensions fixed the space available for storage.
+              I arranged the holders around the 5 mm and 10 mm instruments
+              so each scope had a defined position at both ends.</p>
+          </div>
+          <div>
+            <h4>Retention and Release</h4>
+            <p>A loose holder could let a scope shift in transit. An overly
+              stiff holder would make removal difficult. I varied the clip
+              geometry to control where it could flex as the instrument
+              passed through the opening.</p>
+          </div>
+          <div>
+            <h4>Rigidity Across the Rack</h4>
+            <p>The clips needed local flexibility, but the rows of holders
+              needed to stay aligned. Rod holes let metal members reinforce
+              the overall assembly while leaving the retaining features
+              free to flex.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-summary">
+        <h3>Final Holder Designs</h3>
+        <div class="gallery">
+          <figure>
+            <a href="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_EndHolder.png">
+              <img src="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_EndHolder.png"
+                   alt="Final row of holders for the distal camera ends"
+                   loading="lazy">
+            </a>
+            <figcaption>Distal holder row for the camera ends.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_HeadHolder.png">
+              <img src="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_HeadHolder.png"
+                   alt="Final row of holders for the proximal eyepieces"
+                   loading="lazy">
+            </a>
+            <figcaption>Proximal holder row for the eyepiece ends.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_SingleEndHolder.png">
+              <img src="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_SingleEndHolder.png"
+                   alt="Single distal holder showing the retaining profile"
+                   loading="lazy">
+            </a>
+            <figcaption>One distal holder, isolated to show the clip geometry.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_SingleHeadHolder.png">
+              <img src="Media/2025/ClearCam_ Rack Project/ClearCam_FinalRackDesign_SingleHeadHolder.png"
+                   alt="Single proximal holder showing the eyepiece seat"
+                   loading="lazy">
+            </a>
+            <figcaption>One proximal holder showing the eyepiece seat and entry opening.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="project-summary">
+        <h3>Initial Design</h3>
+        <div class="gallery">
+          <figure>
+            <a href="Media/2025/ClearCam_ Rack Project/ClearCam_InitialRackAssembly.png">
+              <img src="Media/2025/ClearCam_ Rack Project/ClearCam_InitialRackAssembly.png"
+                   alt="Initial rack concept with two individual end supports joined by a rod"
+                   loading="lazy">
+            </a>
+            <figcaption>Early assembly showing the relationship between the two supports and connecting rod.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2025/ClearCam_ Rack Project/ClearCam_InitialRackDesign.png">
+              <img src="Media/2025/ClearCam_ Rack Project/ClearCam_InitialRackDesign.png"
+                   alt="Initial proximal holder with tall flexible arms and a rod hole near the base"
+                   loading="lazy">
+            </a>
+            <figcaption>Initial proximal holder before the retaining profile was revised.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </section>
+
+    <!-- 2024 · BME 214L ECG PCB -->
+    <section class="project-detail" id="ecg-pcb">
+      <p class="label">2024 · BME 214L</p>
+      <h2>Single-Lead ECG PCB</h2>
+
+      <div class="project-layout">
+        <figure>
+          <a href="Media/2024/BME214L_ PCB Project/BME214L_ECG_PCB.png">
+            <img src="Media/2024/BME214L_ PCB Project/BME214L_ECG_PCB.png"
+                 alt="Assembled ECG board with soldered components and labeled amplifier and filter stages"
+                 loading="lazy">
+          </a>
+          <figcaption>The custom ECG board I helped design and populate with my lab partner.</figcaption>
+        </figure>
+
+        <div>
+          <h3>Design Question</h3>
+          <p>How could we amplify a single-lead ECG signal, reduce baseline
+            drift and high-frequency noise, and transfer the working
+            breadboard circuit to a custom PCB?</p>
+
+          <h3>My Contribution</h3>
+          <p>I helped design the ECG board in Fusion 360 and solder its
+            components. We prototyped the signal-conditioning circuit on
+            a National Instruments ELVIS II board and selected resistor
+            and capacitor values for the two filter stages.</p>
+        </div>
+      </div>
+
+      <section class="project-summary">
+        <h3>Signal Conditioning and Filter Calculations</h3>
+        <p>The three-electrode circuit measured one ECG lead. We placed
+          the instrumentation amplifier first, followed by a high-pass
+          filter and a low-pass filter. The final filter values from
+          Labs 10 and 11 gave calculated corner frequencies of approximately
+          0.32 Hz and 48.23 Hz.</p>
+
+        <div class="summary-columns">
+          <div>
+            <h4>Instrumentation Amplifier</h4>
+            <p>The input stage amplified the voltage difference between
+              the two measurement electrodes and rejected voltage common
+              to both inputs. Most of the intended signal gain was
+              assigned to this stage.</p>
+          </div>
+
+          <div>
+            <h4>High-Pass Filter · 0.32 Hz</h4>
+            <p>We selected two 499 kΩ resistors and a 1 µF capacitor.
+              Using f<sub>c</sub> = 1/(2πRC) gives approximately 0.32 Hz.
+              The stage attenuates DC offset and slow baseline drift.
+              Equal resistor values give a nominal passband gain magnitude
+              of 1, or 0 dB.</p>
+          </div>
+
+          <div>
+            <h4>Low-Pass Filter · 48.23 Hz</h4>
+            <p>We selected two 10 kΩ resistors and a 0.33 µF capacitor.
+              The same calculation gives approximately 48.23 Hz. This
+              stage attenuates higher-frequency content and also has a
+              nominal passband gain magnitude of 1.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-summary">
+        <h3>From Breadboard to PCB</h3>
+        <p>The breadboard gave us access to the output of each stage.
+          For the custom board, our lab checkout procedure followed the
+          signal path: verify continuity and the supply reference, then
+          check the amplifier, high-pass output, and low-pass output in
+          sequence. This made it possible to narrow a wiring or soldering
+          fault to the stage where the signal changed unexpectedly.</p>
+
+        <div class="gallery">
+          <figure>
+            <a href="Media/2024/BME214L_ PCB Project/BME214L_ECGPCB_ElvisBoardPrototype.png">
+              <img src="Media/2024/BME214L_ PCB Project/BME214L_ECGPCB_ElvisBoardPrototype.png"
+                   alt="ECG signal-conditioning prototype wired on an NI ELVIS II breadboard"
+                   loading="lazy">
+            </a>
+            <figcaption>NI ELVIS II prototype used during circuit development.</figcaption>
+          </figure>
+
+          <figure>
+            <a href="Media/2024/BME214L_ PCB Project/BME214L_ECGPCB_Schematic.png">
+              <img src="Media/2024/BME214L_ PCB Project/BME214L_ECGPCB_Schematic.png"
+                   alt="Fusion 360 PCB layout showing component footprints and electrical connections"
+                   loading="lazy">
+            </a>
+            <figcaption>Fusion 360 board layout for the ECG amplifier and filters.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Michael Portillo
+      <span class="footer-dot">·</span>
+      FRC, VEX, and UT alumni
+    </p>
+
+    <div class="footer-links">
+      <a href="mailto:michaeldportilloq@gmail.com">Email ↗</a>
+      <a href="https://github.com/YOUR-USERNAME">GitHub ↗</a>
+    </div>
+  </footer>
+</body>
+</html>

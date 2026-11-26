@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Michael Portillo | Biomedical Engineering</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      color: #202a30;
+      background: #fafaf7;
+      font: 17px/1.6 Arial, sans-serif;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12 px 32 px;
+      padding: 20px 0;
+      border-bottom: 1px solid #ccd2cf;
+    }
+
+    a { color: #BF5700; }
+
+    header { padding: 72px 0 48px; }
+
+    h1, h2, h3 {
+      font-family: Georgia, serif;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(44px, 8vw, 76px);
+      margin: 8px 0 20px;
+    }
+
+    h2 { font-size: 32px; }
+    h3 { font-size: 24px; margin-top: 0; }
+    p { max-width: 62ch; }
+
+    article {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-top: 1px solid #ccd2cf;
+    }
+
+    article p { margin: 0 0 12px; }
+    section { margin-bottom: 56px; }
+
+/* Small teal labels above headings */
+.label {
+  color: #BF5700;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+/* Lighter name and subtitle, like the reference */
+header h1 {
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+header h1 + p {
+  color: #626c70;
+}
+
+/* Keep the section heading close to its label */
+#projects h2 {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+/* Project titles in the right-hand column */
+#projects article div h3 {
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0 0 10px;
+}
+
+.project-image {
+width: 100%;
+height: auto;
+display: block;
+border-radius: 8 px;
+
+}
+
+#contact {
+  padding: 24px 0 110px;
+  border-bottom: 1px solid #ccd2cf;
+}
+
+#contact h2 {
+  font-family: Georgia, serif;
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0 0 32px;
+}
+
+#contact a {
+  color: #BF5700;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+#contact a:hover,
+#contact a:focus-visible {
+  text-decoration: underline;
+}
+
+    @media (max-width: 640px) {
+      header { padding: 40px 0 24px; }
+      article { grid-template-columns: 1fr; gap: 8px; }
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>Michael Portillo</strong>
+    <a href="index.html">About</a>
+    <a href="humanoid.html">Humanoid Robotics Projects</a>
+    <a href="competitive.html">Competitive Robotics Projects</a>
+    <a href="medical.html">Medical Device Projects</a>
+    <a href="Resume.pdf">CV</a>
+  </nav>
+
+  <main>
+    <header>
+      <p class="label">BME · THE UNIVERSITY OF TEXAS AT AUSTIN</p>
+      <h1>Michael Portillo</h1>
+      <p> Biomedical Engineering Undergraduate Student </p>
+      <p>I am a senior undergraduate student at UT Austin, advised by Dong Ho Kang in the <a 	href="https://sites.utexas.edu/hcrl/">Human Centered Robotics Lab</a> and Job Ramirez 	in the <a href="https://reneu.robotics.utexas.edu/">ReNeu Robotics Lab</a>. My 	interests focus on prosthetics & orthoses design, humanoid robotics design, and 	wearable assistive robotics. I design geometry and compliance at the contact interface 	to make physical models predictable and functional by the controller.</p>
+    </header>
+
+    <section id="projects">
+      <h2>Highlighted Projects</h2>
+
+<h3 class="label">Humanoid/Wearable Robotics</h3>
+
+<article>
+  <img class="project-image"
+       src="Media/2026/HCRL_ New Hand Actuator/New_HandActuator_Isometric.jpeg"
+       alt="Torque actuator coupler">
+
+  <div>
+    <p class="label">2026</p>
+    <h3>Rack-and-Pinion Hand Actuator</h3>
+    <p>Testing Contact Behavior with a Simple Mechanism for Precise Manipulation at a Easy, Affordable Cost</p>
+  </div>
+</article>
+
+<article>
+  <img class="project-image"
+       src="Media/2026/ReNeu Lab_ Magnetic Rotary Sensor Project/ReNeu_PCBSchematic_Analog.png"
+       alt="Magnetic Rotary Sensor Schematic">
+
+  <div>
+    <p class="label">2026</p>
+    <h3>Magnetic Rotary Sensor PCB &amp; Exoskeleton Integration</h3>
+    <p>Testing PWM and Analog Output to Optimize Exoskeleton Performance</p>
+  </div>
+</article>
+
+<article>
+  <img class="project-image"
+       src="Media/2026/HCRL_ Torque Actuator Project/ActuatorPicture.jpeg"
+       alt="Torque actuator coupler">
+
+  <div>
+    <p class="label">2026</p>
+    <h3>Torque Actuator Coupler</h3>
+    <p>Testing Accuracy and Behavior of Actuator-Torque Sensor Coupling with Affordable Materials</p>
+  </div>
+</article>
+
+<article>
+
+<section id="contact">
+<h2> Contact </h2>
+<a href="mailto:michaeldportilloq@gmail.com"> michaeldportilloq@gmail.com </a>
+
+<a href="https://www.linkedin.com/in/michael-portillo-498bb82b1/"> LinkedIn</a>
+
+</section>
+
+</article>
+    </section>
+  </main>
+</body>
+</html>
